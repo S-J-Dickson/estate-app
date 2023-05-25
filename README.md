@@ -61,4 +61,7 @@ The code base doesn't handle edge cases not in the CSV format. Furthermore, the 
 To further secure the code base, the Laravel Validator class could be used to validate that the person's properties are valid inputs. An HTML purifier could be used to strip dangerous scripts to prevent could cause cross-site scripting or SQL injection. 
 
 A frontend interface could be created to import the CSV. Finally, the person and title models have been made, but no data is stored in the database, but this could be easily achieved in the PersonService class.
-    
+
+If this project was to become longer-term, issues could be created. A branch would be created for the feature, and a pull request would be made once completed.
+
+A simple GitHub workflow could be created to execute all the tests per pull request.
