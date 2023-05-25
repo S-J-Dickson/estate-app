@@ -31,7 +31,6 @@ class InsertPersonsTest extends TestCase
         $this->artisan('app:insert-persons')
             ->expectsQuestion("Select a file", 0)
             ->expectsOutput(print_r($expected, true));
-
     }
 }
 
