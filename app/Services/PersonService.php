@@ -3,12 +3,18 @@
 namespace App\Services;
 
 
-use App\Models\Person;
-
+/**
+ * Class PersonService
+ * @package App\Services
+ */
 class PersonService
 {
 
 
+    /**
+     * @param $file
+     * @return array
+     */
     public function getPersons($file): array
     {
         $persons = [];
@@ -30,11 +36,15 @@ class PersonService
         }
 
         fclose($file);
-
         return $persons;
     }
 
 
+    /**
+     * @param string $name
+     * @param string|null $row
+     * @return array
+     */
     private function createPerson(string $name, string $row = null)
     {
         return $person = [
@@ -46,6 +56,10 @@ class PersonService
     }
 
 
+    /**
+     * @param $row
+     * @return array|false|string[]
+     */
     private function getMultipleNames($row)
     {
         $parts = preg_split('/\s+(?:and|&)\s+/', $row);
@@ -53,12 +67,20 @@ class PersonService
     }
 
 
+    /**
+     * @param $row
+     * @return bool
+     */
     private function isMultipleNames($row)
     {
         return (strpos($row, '&') !== false || strpos($row, 'and') !== false);
     }
 
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     private function getTitle($name)
     {
         // Split the name into an array of words
@@ -73,6 +95,11 @@ class PersonService
         return $title;
     }
 
+    /**
+     * @param string $name
+     * @param string|null $row
+     * @return false|mixed
+     */
     private function getLastName(string $name, ?string $row)
     {
         // Split the full name by whitespace
@@ -106,7 +133,7 @@ class PersonService
         $filteredParts = $this->getFilteredParts($nameParts);
 
         //No extra names provided
-        if (count($filteredParts) < 2) {
+        if (count($filteredParts) < 3) {
             return null;
         }
 
@@ -118,6 +145,10 @@ class PersonService
         return $filteredParts[1];
     }
 
+    /**
+     * @param string $name
+     * @return string|null
+     */
     private function getInitial(string $name): ?string
     {
 
@@ -144,7 +175,6 @@ class PersonService
     /**
      * @param array $nameParts
      * @return array
-     * @created 25-05-2023 sd@groundwow.com
      */
     public function getFilteredParts(array $nameParts): array
     {
